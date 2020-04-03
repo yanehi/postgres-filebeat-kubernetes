@@ -3,7 +3,7 @@
 #
 set -x
 
-kubectl create namespace elastic-stack
+#kubectl create namespace elastic-stack
 echo "Create configmap for Filebeat container"
 kubectl create -f manifests/configmap.yml -n elastic-stack
 echo "Serviceaccount for deployment. Read information of pods and namespaces"

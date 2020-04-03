@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      workload.user.cattle.io/workloadselector: deployment-elastic-stack-postgres
+      workload.user.cattle.io/workloadselector: deployment-postgres-filebeat
   template:
     metadata:
       labels:
-          workload.user.cattle.io/workloadselector: deployment-elastic-stack-postgres
+          workload.user.cattle.io/workloadselector: deployment-postgres-filebeat
     spec:
       containers:
       - env:
@@ -36,18 +36,10 @@ spec:
           privileged: false
           readOnlyRootFilesystem: false
           runAsNonRoot: false
-        stdin: true
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        tty: true
         volumeMounts:
         - mountPath: /var/log/postgresql
           name: pg-log
-      - args:
-        - -e
-        - -E
-        - http.enabled=true
-        env:
+      - env:
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
@@ -89,10 +81,7 @@ spec:
           allowPrivilegeEscalation: false
           privileged: false
           readOnlyRootFilesystem: false
-          runAsNonRoot: false
           runAsUser: 0
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /var/log/postgresql
           name: pg-log
@@ -101,10 +90,7 @@ spec:
           name: filebeat-config
           readOnly: true
           subPath: filebeat.yml
-      dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
       serviceAccountName: filebeat-service-account
       terminationGracePeriodSeconds: 30
       volumes:
