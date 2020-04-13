@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: elastic-stack
+  namespace: elk-stack
 spec:
   replicas: 1
   selector:

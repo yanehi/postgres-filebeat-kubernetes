@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: filebeat-service-account # Name is case sensitive
-  namespace: elastic-stack
+  namespace: elk-stack
 roleRef:
   kind: ClusterRole
   name: filebeat-cluster-role

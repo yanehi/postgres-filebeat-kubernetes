@@ -15,4 +15,4 @@ metadata:
   labels:
     app: elk-filebeat
   name: filebeat-config
-  namespace: elastic-stack
+  namespace: elk-stack
